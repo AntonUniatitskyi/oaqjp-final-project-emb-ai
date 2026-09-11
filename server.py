@@ -12,6 +12,9 @@ def sent_analyzer():
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
     
+    if response['dominant_emotion'] is None:
+        return "Недійсний текст! Спробуйте ще раз!"
+
     anger = response['anger']
     disgust = response['disgust']
     fear = response['fear']
